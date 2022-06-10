@@ -1,10 +1,10 @@
 var button = document.getElementById("btn");
+var isEditing = false;
 
-if (localStorage.getItem('editIndex')!=null) {
+if (localStorage.getItem('editIndex') != null) {
     // potentially an issue - editIndex may store as a string so if this doesn't work thats prob why
     var postList = JSON.parse(localStorage.getItem("prevItems"));
     var index = JSON.parse(localStorage.getItem('editIndex'));
-    localStorage.removeItem('editIndex');
     var postData = postList[index];
     console.log(postData);
     document.querySelector('#name').value = postData.title;
@@ -14,9 +14,13 @@ if (localStorage.getItem('editIndex')!=null) {
     document.querySelector('#num3').value = postData.items[2];
     document.querySelector('#num4').value = postData.items[3];
     document.querySelector('#num5').value = postData.items[4];
+
+    isEditing = true;
 }
 
 button.addEventListener("click", function () {
+
+
 
     // add a check here to make sure none of the fields are empty
     // we could do something as simple as alert()
@@ -32,17 +36,31 @@ button.addEventListener("click", function () {
 
     var post = new PostData(name, tags, items);
     var postList = JSON.parse(localStorage.getItem("prevItems"))
-    if(postList == null){
-        localStorage.setItem("prevItems", JSON.stringify([post]));
+
+    if (isEditing) {
+        var index = JSON.parse(localStorage.getItem('editIndex'));
+        postList[index] = post;
+        localStorage.setItem("prevItems", JSON.stringify(postList))
         console.log("storage: " + localStorage.getItem("prevItems"));
+
+        localStorage.removeItem('editIndex');
+        isEditing = false;
     }
     else {
-       postList.push(post)
-       console.log("postList: " + postList);
-       localStorage.setItem("prevItems", JSON.stringify(postList))
-       console.log("storage: " + localStorage.getItem("prevItems"));
+        if (postList == null) {
+            localStorage.setItem("prevItems", JSON.stringify([post]));
+            console.log("storage: " + localStorage.getItem("prevItems"));
+        }
+        else {
+            postList.push(post)
+            console.log("postList: " + postList);
+            localStorage.setItem("prevItems", JSON.stringify(postList))
+            console.log("storage: " + localStorage.getItem("prevItems"));
+        }
     }
-    
+
+
+
 
 
     // Tests
