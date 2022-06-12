@@ -4,13 +4,12 @@ console.log(postList);
 
 if (postList != null) {
     for(var i=postList.length-1; i>=0; i--){
-        console.log(i);
-        makeNewPost(postList[i], i)
+        console.log("Adding index " + i);
+        createPost(postList[i], i)
     }
-    
 }
 
-function makeNewPost(postData, index) {
+function createPost(postData, index) {
     // later: add id to these elements for CSS purposes
     const element = document.createElement("li");
     element.classList.add('list-group-item');
@@ -29,7 +28,6 @@ function makeNewPost(postData, index) {
     postTitle.innerHTML = ("Top 5 " + postData.title).bold();
     postTitle.style.fontSize = '25px'
     postHeader.appendChild(postTitle);
-
     div1.appendChild(postHeader);
 
     const tagsHolder = document.createElement("div");
@@ -38,6 +36,25 @@ function makeNewPost(postData, index) {
     tagsHolder.classList.add('text-muted');
     tagsHolder.innerHTML = "Tags: " + postData.tags;
     postHeader.appendChild(tagsHolder);
+
+    const likeButton = document.createElement("button");
+    likeButton.classList.add('btn');
+    likeButton.classList.add('btn-primary');
+    likeButton.innerHTML = "High-Fives";
+    const likesNumber = document.createElement("span");
+    likesNumber.id = "likes-counter";
+    likesNumber.classList.add('badge');
+    likesNumber.classList.add('badge-light');
+
+    var likeCount = postData.likes;
+    likesNumber.innerHTML = likeCount;
+    likeButton.appendChild(likesNumber);
+    postHeader.appendChild(likeButton);
+
+    likeButton.addEventListener("click", ()=>{
+        likesNumber.innerHTML = ++likeCount;
+        addLike(likeCount, index);
+    })
 
     const top5list = document.createElement("ul");
     top5list.classList.add('list-group');
@@ -59,10 +76,15 @@ function makeNewPost(postData, index) {
     editPostButton.classList.add("edit");
     editPostButton.innerHTML="Edit";
     editPostButton.addEventListener("click", ()=> {
-        // call a function with post at index "index" in add.js
         localStorage.setItem('editIndex', index);
     })
     anchor.appendChild(editPostButton);
 
     document.querySelector('ul').appendChild(element);
+}
+
+function addLike(count, index) {
+    var prevItems = JSON.parse(localStorage.getItem("prevItems"));
+    prevItems[index].likes = count;
+    localStorage.setItem("prevItems", JSON.stringify(prevItems));
 }
