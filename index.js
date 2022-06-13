@@ -103,12 +103,14 @@ function createPost(postData, index) {
     deletePostButton.classList.add("btn-outline-danger");
     deletePostButton.innerHTML="Delete Post";
     deletePostButton.addEventListener("click", ()=> {
-        // TODO add confirmation popup
-        deletePost(index);
+        if (confirm("Are you sure you want to delete this post?")) {
+            deletePost(index);
+        }
     })
     postButtonsDiv.appendChild(anchor);
     postButtonsDiv.appendChild(deletePostButton);
     div1.appendChild(postButtonsDiv);
+    div1.style.margin = "auto";
 
     document.querySelector('ul').appendChild(element);
 }
