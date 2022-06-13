@@ -6,8 +6,9 @@ if (localStorage.getItem('editIndex') != null) {
     var postList = JSON.parse(localStorage.getItem("prevItems"));
     var index = JSON.parse(localStorage.getItem('editIndex'));
     var postData = postList[index];
-    likes = postData.likes;
-    console.log(postData);
+    if (postData !=null) {
+        likes=postData.likes;
+    }
 
     document.querySelector('#name').value = postData.title;
     document.querySelector('#tags').value = postData.tags;

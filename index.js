@@ -69,17 +69,31 @@ function createPost(postData, index) {
         top5list.appendChild(item);
     }
 
+    const postButtonsDiv = document.createElement("div");
+
     const anchor = document.createElement("a");
     anchor.href = "add.html";
-    div1.appendChild(anchor);
 
     const editPostButton = document.createElement("button");
-    editPostButton.classList.add("edit");
+    editPostButton.classList.add("btn");
+    editPostButton.classList.add("btn-outline-primary");
     editPostButton.innerHTML="Edit";
     editPostButton.addEventListener("click", ()=> {
         localStorage.setItem('editIndex', index);
     })
     anchor.appendChild(editPostButton);
+
+    const deletePostButton = document.createElement("button");
+    deletePostButton.classList.add("btn");
+    deletePostButton.classList.add("btn-outline-danger");
+    deletePostButton.innerHTML="Delete Post";
+    deletePostButton.addEventListener("click", ()=> {
+        // TODO add confirmation popup
+        deletePost(index);
+    })
+    postButtonsDiv.appendChild(anchor);
+    postButtonsDiv.appendChild(deletePostButton);
+    div1.appendChild(postButtonsDiv);
 
     document.querySelector('ul').appendChild(element);
 }
@@ -88,4 +102,15 @@ function addLike(count, index) {
     var prevItems = JSON.parse(localStorage.getItem("prevItems"));
     prevItems[index].likes = count;
     localStorage.setItem("prevItems", JSON.stringify(prevItems));
+}
+
+function deletePost(i) {
+    // remove this post from prevItems
+    // this shouldn't affect the loop becaue postList is taking the old prevItems
+    var prevItems = JSON.parse(localStorage.getItem("prevItems"));
+    prevItems.splice(i, 1);
+    localStorage.setItem("prevItems", JSON.stringify(prevItems));
+    localStorage.removeItem('editIndex');
+    location.reload();
+    // have to test this out
 }
