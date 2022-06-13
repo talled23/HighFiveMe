@@ -41,7 +41,18 @@ function createPost(postData, index) {
     const likeButton = document.createElement("button");
     likeButton.classList.add('btn');
     likeButton.classList.add('btn-primary');
-    likeButton.innerHTML = "High-Fives";
+    const image = document.createElement("img");
+    image.src = "highfive.png";
+    image.style.width = "20px";
+    image.style.height = "20px";
+    image.style.marginRight = "3px";
+    likeButton.appendChild(image);
+    const image2 = document.createElement("img");
+    image2.src = "downfive.png";
+    image2.style.width = "20px";
+    image2.style.height = "20px";
+    likeButton.appendChild(image2);
+
     const likesNumber = document.createElement("span");
     likesNumber.id = "likes-counter";
     likesNumber.classList.add('badge');
@@ -52,8 +63,12 @@ function createPost(postData, index) {
     likeButton.appendChild(likesNumber);
     postHeader.appendChild(likeButton);
 
-    likeButton.addEventListener("click", ()=>{
+    image.addEventListener("click", ()=>{
         likesNumber.innerHTML = ++likeCount;
+        addLike(likeCount, index);
+    })
+    image2.addEventListener("click", ()=>{
+        likesNumber.innerHTML = --likeCount;
         addLike(likeCount, index);
     })
 
