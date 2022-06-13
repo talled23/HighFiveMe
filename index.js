@@ -1,3 +1,4 @@
+
 console.log(localStorage.getItem("prevItems"))
 var postList = JSON.parse(localStorage.getItem("prevItems"));
 console.log(postList);
