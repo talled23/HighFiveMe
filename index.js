@@ -18,7 +18,7 @@ function createPost(postData, index) {
 
     const div1 = document.createElement("div");
     div1.classList.add('card');
-    div1.style.width = '18rem';
+    div1.style.width = '30rem';
     element.appendChild(div1);
 
     const postHeader = document.createElement("div");
@@ -92,6 +92,7 @@ function createPost(postData, index) {
     const editPostButton = document.createElement("button");
     editPostButton.classList.add("btn");
     editPostButton.classList.add("btn-outline-primary");
+    editPostButton.classList.add("btn-lg");
     editPostButton.innerHTML="Edit";
     editPostButton.addEventListener("click", ()=> {
         localStorage.setItem('editIndex', index);
@@ -101,6 +102,7 @@ function createPost(postData, index) {
     const deletePostButton = document.createElement("button");
     deletePostButton.classList.add("btn");
     deletePostButton.classList.add("btn-outline-danger");
+    deletePostButton.classList.add("btn-lg");
     deletePostButton.innerHTML="Delete Post";
     deletePostButton.addEventListener("click", ()=> {
         if (confirm("Are you sure you want to delete this post?")) {
@@ -109,8 +111,12 @@ function createPost(postData, index) {
     })
     postButtonsDiv.appendChild(anchor);
     postButtonsDiv.appendChild(deletePostButton);
+    postButtonsDiv.classList.add('my-2');
+    postButtonsDiv.style.margin = "auto";
     div1.appendChild(postButtonsDiv);
-    div1.style.marginLeft = "60rem";
+
+    // Check this
+    div1.style.margin = "auto";
 
     document.querySelector('ul').appendChild(element);
 }
@@ -129,5 +135,4 @@ function deletePost(i) {
     localStorage.setItem("prevItems", JSON.stringify(prevItems));
     localStorage.removeItem('editIndex');
     location.reload();
-    // have to test this out
 }

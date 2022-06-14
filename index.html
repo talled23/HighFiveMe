@@ -10,23 +10,16 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
-<body>
-    <div style="text-align: center;">
+<body style="margin:auto; border-bottom-style: groove; border-left-style:groove; border-right-style:groove; border-radius:10px; width: 75%;">
+    <div class="page-header" style="border-bottom-style: groove; margin:auto; text-align: center; background-color: rgb(236, 236, 236);">
         <p class="display-1">High Five Me!</p>
-        <h1 class="display-8" style="font-family: Helvetica, sans-serif;"><b>Welcome to the Feed</b></h1>
-        <a href="add.html"><button id="btn" class="btn btn-info">+ New Post</button></a>
+        <h1 class="display-8 pb-4"><b>The Feed</b></h1>
     </div>
-    <!-- <figure>
-        <blockquote class="blockquote">
-            <p>"Wow what a good website! I love this website</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-            Emilio Lorenzo Aleman from <cite title="Source Title">New york Times</cite>
-        </figcaption>
-    </figure> -->
-
+    <div class="pt-3 mt-3" style="text-align: center;">
+        <a href="add.html"><button id="btn" class="btn btn-info btn-lg">+ New Post</button></a>
+    </div>
+        
     <ul class="list-group-flush"></ul>
-
 
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -35,3 +28,8 @@
 </body>
 
 </html>
+<style>
+    #id:hover {
+        transform: scale(1.2);
+    }
+</style>

@@ -42,6 +42,14 @@ submitButton.addEventListener("click", function () {
     items.push(document.getElementById("num4").value);
     items.push(document.getElementById("num5").value);
 
+    // this doesn't work
+    if (name===null || tags===null || items===null) {
+        alert("You didn't fill out all of the fields. Please try again.");
+        // need to do the JS equivalent of "continue"
+        // ... so the post doesn't get made 
+        // also submitButton is currently an href, this needs to be make "inactive" somehow
+    }
+
     var post = new PostData(name, tags, items, likes);
     var postList = JSON.parse(localStorage.getItem("prevItems"))
 
