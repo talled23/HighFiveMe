@@ -47,7 +47,7 @@ submitButton.addEventListener("click", function () {
         document.getElementById("num5").value == "") {
     }
     else {
-        
+
         var tags = document.getElementById("tags").value.split(",");
         var items = [];
         items.push(document.getElementById("num1").value);
@@ -56,7 +56,9 @@ submitButton.addEventListener("click", function () {
         items.push(document.getElementById("num4").value);
         items.push(document.getElementById("num5").value);
 
-        var post = new PostData(name, tags, items, likes, username);
+        var now = new Date();
+
+        var post = new PostData(name, tags, items, likes, username, now.toLocaleString());
         var postList = JSON.parse(localStorage.getItem("prevItems"))
 
         if (isEditing) {
@@ -90,11 +92,12 @@ submitButton.addEventListener("click", function () {
 });
 
 class PostData {
-    constructor(title, tags, items, likes, username) {
+    constructor(title, tags, items, likes, username, time) {
         this.title = title;
         this.tags = tags;
         this.items = items;
         this.likes = likes;
         this.username = username;
+        this.time = time;
     }
 }

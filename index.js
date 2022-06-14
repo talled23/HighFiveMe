@@ -36,7 +36,7 @@ function createPost(postData, index) {
     username.classList.add('card-subtitle');
     username.classList.add('mb-2');
     username.classList.add('text-muted');
-    username.innerHTML = "by " + postData.username;
+    username.innerHTML = "by " + postData.username + " at " + postData.time;
     postHeader.appendChild(username);
 
     const tagsHolder = document.createElement("div");
