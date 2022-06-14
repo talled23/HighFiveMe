@@ -18,6 +18,7 @@ function createPost(postData, index) {
 
     const div1 = document.createElement("div");
     div1.classList.add('card');
+    div1.style.backgroundColor = "#FFFF99";
     div1.style.width = '30rem';
     element.appendChild(div1);
 
@@ -79,6 +80,7 @@ function createPost(postData, index) {
 
     for (var i=0; i<5; i++) {
         const item = document.createElement("li");
+        item.style.backgroundColor = "#FFFF99";
         item.classList.add('list-group-item');
         item.innerHTML = (i+1) + ". " + postData.items[i];
         top5list.appendChild(item);
@@ -91,8 +93,10 @@ function createPost(postData, index) {
 
     const editPostButton = document.createElement("button");
     editPostButton.classList.add("btn");
+    editPostButton.classList.add("me-3");
     editPostButton.classList.add("btn-outline-primary");
     editPostButton.classList.add("btn-lg");
+    editPostButton.classList.add("edit");
     editPostButton.innerHTML="Edit";
     editPostButton.addEventListener("click", ()=> {
         localStorage.setItem('editIndex', index);
@@ -101,8 +105,10 @@ function createPost(postData, index) {
 
     const deletePostButton = document.createElement("button");
     deletePostButton.classList.add("btn");
+    editPostButton.classList.add("ms-3");
     deletePostButton.classList.add("btn-outline-danger");
     deletePostButton.classList.add("btn-lg");
+    deletePostButton.classList.add("delete");
     deletePostButton.innerHTML="Delete Post";
     deletePostButton.addEventListener("click", ()=> {
         if (confirm("Are you sure you want to delete this post?")) {
