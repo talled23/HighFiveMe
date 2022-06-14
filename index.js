@@ -13,13 +13,13 @@ if (postList != null) {
 function createPost(postData, index) {
     // later: add id to these elements for CSS purposes
     const element = document.createElement("li");
+    element.style.width = 'auto';
     element.classList.add('list-group-item');
     element.classList.add('my-5');
 
     const div1 = document.createElement("div");
     div1.classList.add('card');
     div1.style.backgroundColor = "#FFFF99";
-    div1.style.width = '30rem';
     element.appendChild(div1);
 
     const postHeader = document.createElement("div");
@@ -31,6 +31,13 @@ function createPost(postData, index) {
     postTitle.style.fontSize = '25px'
     postHeader.appendChild(postTitle);
     div1.appendChild(postHeader);
+
+    const username = document.createElement("div");
+    username.classList.add('card-subtitle');
+    username.classList.add('mb-2');
+    username.classList.add('text-muted');
+    username.innerHTML = "by " + postData.username;
+    postHeader.appendChild(username);
 
     const tagsHolder = document.createElement("div");
     tagsHolder.classList.add('card-subtitle');
@@ -44,14 +51,16 @@ function createPost(postData, index) {
     likeButton.classList.add('btn-primary');
     const image = document.createElement("img");
     image.src = "highfive.png";
-    image.style.width = "20px";
-    image.style.height = "20px";
-    image.style.marginRight = "3px";
+    image.style.width = "40px";
+    image.style.height = "40px";
+    image.style.marginRight = "5px";
     likeButton.appendChild(image);
     const image2 = document.createElement("img");
+    image.classList.add("p-1");
+    image2.classList.add("p-1");
     image2.src = "downfive.png";
-    image2.style.width = "20px";
-    image2.style.height = "20px";
+    image2.style.width = "40px";
+    image2.style.height = "40px";
     likeButton.appendChild(image2);
 
     const likesNumber = document.createElement("span");
@@ -65,10 +74,14 @@ function createPost(postData, index) {
     postHeader.appendChild(likeButton);
 
     image.addEventListener("click", ()=>{
+        image.style.borderColor = "#43FF33";
+        image2.style.borderColor = "#555";
         likesNumber.innerHTML = ++likeCount;
         addLike(likeCount, index);
     })
     image2.addEventListener("click", ()=>{
+        image2.style.borderColor = "red";
+        image.style.borderColor = "#555";
         likesNumber.innerHTML = --likeCount;
         addLike(likeCount, index);
     })

@@ -35,9 +35,11 @@ submitButton.addEventListener("click", function () {
 
     var name = document.getElementById("name").value;
     var tags = document.getElementById("tags").value.split(",");
+    var username = document.getElementById("username").value;
 
     // this doesn't work
     if (name == "" || tags == null ||
+        document.getElementById("username").value == "" ||
         document.getElementById("num1").value == "" ||
         document.getElementById("num2").value == "" ||
         document.getElementById("num3").value == "" ||
@@ -54,7 +56,7 @@ submitButton.addEventListener("click", function () {
         items.push(document.getElementById("num4").value);
         items.push(document.getElementById("num5").value);
 
-        var post = new PostData(name, tags, items, likes);
+        var post = new PostData(name, tags, items, likes, username);
         var postList = JSON.parse(localStorage.getItem("prevItems"))
 
         if (isEditing) {
@@ -88,10 +90,11 @@ submitButton.addEventListener("click", function () {
 });
 
 class PostData {
-    constructor(title, tags, items, likes) {
+    constructor(title, tags, items, likes, username) {
         this.title = title;
         this.tags = tags;
         this.items = items;
         this.likes = likes;
+        this.username = username;
     }
 }
