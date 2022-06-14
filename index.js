@@ -110,7 +110,7 @@ function createPost(postData, index) {
     postButtonsDiv.appendChild(anchor);
     postButtonsDiv.appendChild(deletePostButton);
     div1.appendChild(postButtonsDiv);
-    div1.style.margin = "auto";
+    div1.style.marginLeft = "60rem";
 
     document.querySelector('ul').appendChild(element);
 }

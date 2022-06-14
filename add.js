@@ -3,7 +3,8 @@ var likes = 0;
 
 document.getElementById("back-to-feed-button").addEventListener("click", ()=> {
     if (confirm("You must submit your edits using the button at the bottom.\nDo you wish to discard your edits?")) {
-        window.location.href = "index.html"
+        localStorage.removeItem('editIndex');
+        window.location.href = "index.html";
     }
 })
 
