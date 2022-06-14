@@ -18,6 +18,7 @@ if (localStorage.getItem('editIndex') != null) {
 
     document.querySelector('#name').value = postData.title;
     document.querySelector('#tags').value = postData.tags;
+    document.querySelector('#username').value = postData.username;
     document.querySelector('#num1').value = postData.items[0];
     document.querySelector('#num2').value = postData.items[1];
     document.querySelector('#num3').value = postData.items[2];
